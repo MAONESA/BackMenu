@@ -9,7 +9,7 @@ public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String nickname;
+    private String username;
     private String password;
     private String email;
 
@@ -25,12 +25,12 @@ public class Usuario {
         this.id = id;
     }
 
-    public String getNickname() {
-        return nickname;
+    public String getUsername() {
+        return username;
     }
 
     public void setNickname(String nickname) {
-        this.nickname = nickname;
+        this.username = nickname;
     }
 
     public String getPassword() {

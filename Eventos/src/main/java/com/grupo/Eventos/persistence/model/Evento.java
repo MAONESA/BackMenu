@@ -22,7 +22,11 @@ public class Evento {
 	private Date date;
 
 	@ManyToMany
-	@JoinTable(name = "evento_usuario", joinColumns = @JoinColumn(name = "evento_id"), inverseJoinColumns = @JoinColumn(name = "usuario_id"))
+	@JoinTable(
+			name = "evento_usuario", 
+			joinColumns = @JoinColumn(name = "evento_id"),
+			inverseJoinColumns = @JoinColumn(name = "usuario_id")
+			)
 	private Set<Usuario> usuarios;
 
 	public Set<Usuario> getUsuarios() {

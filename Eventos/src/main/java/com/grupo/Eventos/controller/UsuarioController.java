@@ -3,6 +3,7 @@ package com.grupo.Eventos.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,30 +25,41 @@ import com.grupo.Eventos.persistence.repository.UsuarioRepository;
 public class UsuarioController {
 	
 	@Autowired
-	private UsuarioRepository UsuarioRepository;
+	private UsuarioRepository usuarioRepository;
 	
 	@PostMapping("/")
 	public void createUsuario(@RequestBody Usuario usuario) {
-		UsuarioRepository.save(usuario);
+		usuarioRepository.save(usuario);
 	}
+	
+	@PostMapping("/login")
+	public ResponseEntity<String> login(@RequestBody Usuario loginRequest) {
+	    Usuario usuario = usuarioRepository.findByUsername(loginRequest.getUsername());
+	    if (usuario != null && usuario.getPassword().equals(loginRequest.getPassword())) {
+	        return ResponseEntity.ok("Login Successful");
+	    } else {
+	        return ResponseEntity.status(401).body("Invalid Credentials");
+	    }
+	}
+
 	
 	@GetMapping("/")
 	public List<Usuario> selectUsuario() {
-		List<Usuario> usuario = UsuarioRepository.findAll();
+		List<Usuario> usuario = usuarioRepository.findAll();
 		return usuario;
 	}
 	
 	@PutMapping("/{id}")
 	public void updateUsuario(@RequestBody Usuario usuario, @PathVariable("id")Integer id) {
 		usuario.setId(id);
-		UsuarioRepository.save(usuario);
+		usuarioRepository.save(usuario);
 	}
 	
 	@DeleteMapping("/{id}")
 	public void deleteUsuario(@PathVariable("id") Integer id) {
 		Usuario i = new Usuario();
 		i.setId(id);
-		UsuarioRepository.delete(i);
+		usuarioRepository.delete(i);
 	}
 
 }
