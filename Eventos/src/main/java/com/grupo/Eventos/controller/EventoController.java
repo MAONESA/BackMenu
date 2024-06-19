@@ -44,9 +44,9 @@ public class EventoController {
 	}
 	
 	@PutMapping("/{id}")
-	public void updateEvent(@RequestBody Evento pacient, @PathVariable("id")Integer id) {
-		pacient.setId(id);
-		eventoRepository.save(pacient);
+	public void updateEvent(@RequestBody Evento evento, @PathVariable("id")Integer id) {
+		evento.setId(id);
+		eventoRepository.save(evento);
 	}
 	
 	@DeleteMapping("/{id}")
