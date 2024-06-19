@@ -37,12 +37,10 @@ public class EventoController {
 		List<Evento> evento = eventoRepository.findAll();
 		return evento;
 	}
-	
+		
 	@GetMapping("/{id}")
-	public ResponseEntity<Evento> selectEventById(@PathVariable("id") Integer id) {
-	    Optional<Evento> evento = eventoRepository.findById(id);
-	    return evento.map(ResponseEntity::ok)
-	                 .orElseGet(() -> ResponseEntity.notFound().build());
+	public Evento selectEventById(@PathVariable("id") Integer id) {
+	    return eventoRepository.findById(id).orElse(null);
 	}
 	
 	@PutMapping("/{id}")
