@@ -1,41 +1,59 @@
 package com.grupo.Eventos.persistence.model;
 
+import java.sql.Date;
+import java.util.Set;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import java.sql.Date;
-
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
+ 	
 @Entity
 public class Evento {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-    private String eventName;
-    private Date date;
-    
-    public int getId() {
-        return id;
-    }
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
+	private String eventName;
 
-    public void setId(int id) {
-        this.id = id;
-    }
+	private Date date;
 
-    public String getEventName() {
-        return eventName;
-    }
+	@ManyToMany
+	@JoinTable(name = "evento_usuario", joinColumns = @JoinColumn(name = "evento_id"), inverseJoinColumns = @JoinColumn(name = "usuario_id"))
+	private Set<Usuario> usuarios;
 
-    public void setEventName(String eventName) {
-        this.eventName = eventName;
-    }
+	public Set<Usuario> getUsuarios() {
+		return usuarios;
+	}
 
-    public Date getDate() {
-        return date;
-    }
+	public void setUsuarios(Set<Usuario> usuarios) {
+		this.usuarios = usuarios;
+	}
 
-    public void setDate(Date date) {
-        this.date = date;
-    }
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getEventName() {
+		return eventName;
+	}
+
+	public void setEventName(String eventName) {
+		this.eventName = eventName;
+	}
+
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
+	}
 }

@@ -1,16 +1,12 @@
 package com.grupo.Eventos.controller;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -37,22 +33,22 @@ public class EventoController {
 		List<Evento> evento = eventoRepository.findAll();
 		return evento;
 	}
-		
+	
 	@GetMapping("/{id}")
 	public Evento selectEventById(@PathVariable("id") Integer id) {
 	    return eventoRepository.findById(id).orElse(null);
 	}
 	
-	@PutMapping("/{id}")
-	public void updateEvent(@RequestBody Evento evento, @PathVariable("id")Integer id) {
-		evento.setId(id);
-		eventoRepository.save(evento);
-	}
-	
-	@DeleteMapping("/{id}")
-	public void deleteEvent(@PathVariable("id") Integer id) {
-		Evento i = new Evento();
-		i.setId(id);
-		eventoRepository.delete(i);
-	}
+//	@PutMapping("/{id}")
+//	public void updateEvent(@RequestBody Evento evento, @PathVariable("id")Integer id) {
+//		evento.setId(id);
+//		eventoRepository.save(evento);
+//	}
+//	
+//	@DeleteMapping("/{id}")
+//	public void deleteEvent(@PathVariable("id") Integer id) {
+//		Evento i = new Evento();
+//		i.setId(id);
+//		eventoRepository.delete(i);
+//	}
 }
