@@ -14,7 +14,6 @@ public class Evento {
     private int id;
     private String eventName;
     private Date date;
-
     
     public int getId() {
         return id;
