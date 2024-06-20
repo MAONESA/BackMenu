@@ -36,7 +36,7 @@ public class UsuarioController {
 	public ResponseEntity<String> login(@RequestBody Usuario loginRequest) {
 	    Usuario usuario = usuarioRepository.findByUsername(loginRequest.getUsername());
 	    if (usuario != null && usuario.getPassword().equals(loginRequest.getPassword())) {
-	        return ResponseEntity.ok("Login Successful");
+	        return ResponseEntity.status(200).body("Login Successful");
 	    } else {
 	        return ResponseEntity.status(401).body("Invalid Credentials");
 	    }

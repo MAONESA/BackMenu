@@ -10,7 +10,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
- 	
+
 @Entity
 public class Evento {
 
@@ -18,15 +18,13 @@ public class Evento {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String eventName;
-
+	private String locationEvent;
+	private String descriptionEvent;
 	private Date date;
 
 	@ManyToMany
-	@JoinTable(
-			name = "evento_usuario", 
-			joinColumns = @JoinColumn(name = "evento_id"),
-			inverseJoinColumns = @JoinColumn(name = "usuario_id")
-			)
+	@JoinTable(name = "evento_usuario", joinColumns = @JoinColumn(name = "evento_id"), inverseJoinColumns = @JoinColumn(name = "usuario_id"))
+
 	private Set<Usuario> usuarios;
 
 	public Set<Usuario> getUsuarios() {
@@ -60,4 +58,21 @@ public class Evento {
 	public void setDate(Date date) {
 		this.date = date;
 	}
+
+	public String getLocationEvent() {
+		return locationEvent;
+	}
+
+	public void setLocationEvent(String locationEvent) {
+		this.locationEvent = locationEvent;
+	}
+
+	public String getDescriptionEvent() {
+		return descriptionEvent;
+	}
+
+	public void setDescriptionEvent(String descriptionEvent) {
+		this.descriptionEvent = descriptionEvent;
+	}
+	
 }
